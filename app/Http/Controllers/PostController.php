@@ -82,7 +82,7 @@ class PostController extends Controller
     {
         $findPost = Post::find($post);
         if (!$findPost) {
-            return redirect()->route('posts.index')->withSuccess(['Errors', 'USer not Found']);
+            return redirect()->route('posts.index')->withSuccess(['Errors', 'User not Found']);
         }
 
         return view('post.show', compact('post'));
@@ -138,7 +138,7 @@ class PostController extends Controller
     {
         $findPost = Post::find($post);
         if (!$findPost) {
-            return redirect()->route('posts.index')->withSuccess(['Errors', 'Post not Found']);
+            return redirect()->route('posts.index')->withErrors(['Errors', 'Post not Found']);
         }
         $post->delete();
 

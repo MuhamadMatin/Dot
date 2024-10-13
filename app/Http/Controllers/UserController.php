@@ -57,7 +57,7 @@ class UserController extends Controller
             return redirect()->route('users.create')->withErrors($validator);
         }
 
-        $user = User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
@@ -76,7 +76,7 @@ class UserController extends Controller
     {
         $findUser = User::find($user);
         if (!$findUser) {
-            return redirect()->route('users.index')->withSuccess(['Errors', 'USer not Found']);
+            return redirect()->route('users.index')->withErrors(['Errors', 'USer not Found']);
         }
 
         return view('user.show', compact('user'));
@@ -105,6 +105,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'sometimes|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -112,8 +113,9 @@ class UserController extends Controller
         }
 
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
 
         return redirect()->route('users.index');
@@ -129,17 +131,10 @@ class UserController extends Controller
     {
         $findUser = User::find($user);
         if (!$findUser) {
-            return redirect()->route('users.index')->withSuccess(['Errors', 'USer not Found']);
+            return redirect()->route('users.index')->withErrors(['Errors', 'USer not Found']);
         }
         $user->delete();
 
         return redirect()->route('users.index');
-    }
-
-    public function profile($id)
-    {
-        $user = User::find($id);
-
-        return view('profile', compact('user'));
     }
 }

@@ -35,7 +35,7 @@
                         <input type="password" class="form-control" id="password" name="password"
                             @if ($user->id !== auth()->user()->id) disabled @endif>
                         @if ($user->id !== auth()->user()->id)
-                            <small class="form-text text-muted">Password cannot be changed for this user.</small>
+                            <small class="form-text text-muted">You not user account password for this user.</small>
                         @endif
                     </div>
                     <span class="d-flex">

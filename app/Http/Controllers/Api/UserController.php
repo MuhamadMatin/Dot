@@ -54,7 +54,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $user = User::create([
+        User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
@@ -63,7 +63,6 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'error' => 'Users create success',
-            'data' => $user,
         ], 201);
     }
 
@@ -150,18 +149,12 @@ class UserController extends Controller
                 'error' => 'User not found',
             ], 404);
         }
-        try {
-            $user->delete();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User delete success',
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'error' => 'Someting wrong',
-            ], 500);
-        }
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User delete success',
+        ], 200);
     }
 }

@@ -1,5 +1,7 @@
 ## Dot Project
 
+![Database Image](./public/images/database.png)
+
 Projek ini saya bangun menggunakan:
 
 -   [Laravel](https://laravel.com).

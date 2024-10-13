@@ -56,6 +56,7 @@ class PostController extends Controller
         }
 
         $slug = Str::slug($request['title']);
+
         if (Post::where('slug', $slug)->exists()) {
             return response()->json([
                 'status' => false,
@@ -63,7 +64,7 @@ class PostController extends Controller
             ], 422);
         }
 
-        $post = Post::create([
+        Post::create([
             'title' => $request['title'],
             'slug' => $slug,
             'body' => $request['body'],
@@ -73,7 +74,6 @@ class PostController extends Controller
         return response()->json([
             'status' => true,
             'error' => 'Posts create success',
-            'data' => $post,
         ], 201);
     }
 
@@ -170,18 +170,12 @@ class PostController extends Controller
                 'error' => 'Post not found',
             ], 404);
         }
-        try {
-            $post->delete();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Post delete success',
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'error' => 'Someting wrong',
-            ], 500);
-        }
+        $post->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Post delete success',
+        ], 200);
     }
 }
