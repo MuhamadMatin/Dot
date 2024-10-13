@@ -59,7 +59,7 @@ class PostController extends Controller
         $slug = Str::slug($request['title']);
 
         if ($validator->fails()) {
-            return redirect()->route('post.create')->withErrors($validator);
+            return redirect()->route('posts.create')->withErrors($validator);
         }
 
         $post = Post::create([
@@ -116,7 +116,7 @@ class PostController extends Controller
         $slug = Str::slug($request['title']);
 
         if ($validator->fails()) {
-            return redirect()->route('post.edit', $post)->withErrors($validator);
+            return redirect()->route('posts.edit', $post)->withErrors($validator);
         }
 
         $post->update([

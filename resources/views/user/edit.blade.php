@@ -7,7 +7,7 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card w-50">
             <div class="card-body">
-                <form action="{{ route('user.update', $user) }}" method="POST">
+                <form action="{{ route('users.update', $user) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <!-- Pesan Error -->
@@ -29,6 +29,14 @@
                         <label for="email">Email address</label>
                         <input value="{{ $user->email }}" type="email" class="form-control" id="email" name="email"
                             required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            @if ($user->id !== auth()->user()->id) disabled @endif>
+                        @if ($user->id !== auth()->user()->id)
+                            <small class="form-text text-muted">Password cannot be changed for this user.</small>
+                        @endif
                     </div>
                     <span class="d-flex">
                         <button type="submit" class="btn btn-primary mr-4">Update</button>

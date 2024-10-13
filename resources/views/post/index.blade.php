@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1>post page</h1>
-        <a href="{{ route('post.create') }}">Create Post</a>
+        <a href="{{ route('posts.create') }}">Create Post</a>
         <!-- Search -->
         <form action="{{ route('posts.index') }}" method="GET" class="mb-3 w-50">
             <div class="input-group">
@@ -14,9 +14,6 @@
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </form>
-        {{ $posts->perPage() }}
-        {{ $posts->currentPage() - 1 }}
-        {{-- {{ $loop->iteration }} --}}
 
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
@@ -36,9 +33,9 @@
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->body }}</td>
                         <td>
-                            <a href="{{ route('post.show', $post) }}" class="btn btn-sm btn-primary">Show</a>
-                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-secondary">Edit</a>
-                            <form action="{{ route('post.delete', $post->id) }}" method="POST" class="d-inline">
+                            <a href="{{ route('posts.show', $post) }}" class="btn btn-sm btn-primary">Show</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"

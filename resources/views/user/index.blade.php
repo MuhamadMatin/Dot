@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <h1>User page</h1>
-        <a href="{{ route('user.create') }}">Create User</a>
+        <a href="{{ route('users.create') }}">Create User</a>
         <!-- Search -->
         <form action="{{ route('users.index') }}" method="GET" class="mb-3 w-50">
             <div class="input-group">
@@ -31,9 +31,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a href="{{ route('user.show', $user) }}" class="btn btn-sm btn-primary">Show</a>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary">Edit</a>
-                            <form action="{{ route('user.delete', $user->id) }}" method="POST" class="d-inline">
+                            <a href="{{ route('users.show', $user) }}" class="btn btn-sm btn-primary">Show</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"

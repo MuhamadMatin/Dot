@@ -7,7 +7,7 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card w-50">
             <div class="card-body">
-                <form action="{{ route('post.update', $post) }}" method="POST">
+                <form action="{{ route('posts.update', $post) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <!-- Pesan Error -->

@@ -54,7 +54,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('user.create')->withErrors($validator);
+            return redirect()->route('users.create')->withErrors($validator);
         }
 
         $user = User::create([
@@ -108,7 +108,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('user.edit', $user)->withErrors($validator);
+            return redirect()->route('users.edit', $user)->withErrors($validator);
         }
 
         $user->update([
@@ -134,5 +134,12 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+
+        return view('profile', compact('user'));
     }
 }
