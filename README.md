@@ -6,6 +6,7 @@ Projek ini saya bangun menggunakan:
 
 -   [Laravel](https://laravel.com).
 -   [Bootstrap](https://getbootstrap.com).
+-   [Postman](https://www.postman.com).
 -   [Laravel Sanctum](https://github.com/laravel/sanctum).
 
 Projek ini saya bangun sebagai syarat bergabung menjadi bagian dari program magang batch 3 Dot Indonesia, pada projek ini saya membuat saya membuat API.php dan WEB.php menjadi satu projek yang dimana ini baru pertama kali saya melakukan itu.
